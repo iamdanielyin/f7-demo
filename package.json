@@ -6,6 +6,7 @@
   "scripts": {
     "build": "gulp build",
     "hot": "gulp hot",
+    "watch": "gulp watch",
     "deploy": "NODE_ENV=production gulp deploy"
   },
   "repository": {

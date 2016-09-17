@@ -17,7 +17,7 @@ const htmlmin = require('gulp-htmlmin');
 gulp.task('minify-html', function () {
     const dest = (process.env.NODE_ENV == 'production') ? 'dist/page' : 'build/page';
     fs.emptyDirSync(dest);
-    return gulp.src('src/page/*.html')
+    return gulp.src('src/page/**/*.html')
         .pipe(htmlmin({collapseWhitespace: true}))
         .pipe(gulp.dest(dest))
 });
@@ -25,7 +25,7 @@ gulp.task('minify-html', function () {
 gulp.task('html', function () {
     const dest = (process.env.NODE_ENV == 'production') ? 'dist/page' : 'build/page';
     fs.emptyDirSync(dest);
-    return gulp.src('src/page/*.html')
+    return gulp.src('src/page/**/*.html')
         .pipe(gulp.dest(dest))
 });
 
@@ -61,6 +61,10 @@ gulp.task('webpack-dev-server', function (callback) {
     });
 });
 
+// 文档临听任务
+gulp.task('watch', ['build'], function () {
+    gulp.watch('src/page/**/*\.html', ['html']);//监听html变化
+});
 
 // 生产环境构建任务
 gulp.task('webpack-deploy', function (callback) {
@@ -76,13 +80,9 @@ gulp.task('webpack-deploy', function (callback) {
 });
 
 gulp.task("build", ['webpack']);
-gulp.task("hot", ['webpack', 'webpack-dev-server']);
+gulp.task("hot", ['webpack', 'webpack-dev-server', 'watch']);
 gulp.task("deploy", ['webpack-deploy', 'minify-html']);
 
-// 文档临听任务
-gulp.task('watch', ['build'], function () {
-    gulp.watch('src/page/*\.html', ['html']);//监听html变化
-});
 
 // 注册默认任务
 gulp.task('default', ['build']);
