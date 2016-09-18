@@ -51,9 +51,16 @@ gulp.task('webpack-dev-server', function (callback) {
     new WebpackDevServer(compiler, {
         contentBase: config.output.path,
         hot: true,
+        inline: true,
         stats: {
             color: true
-        }
+        },
+        // proxy: {
+        //     '/ishop/**/*': {
+        //         target: 'http://localhost:8181',
+        //         secure: false
+        //     }
+        // }
     }).listen(1220, function (err) {
         if (err) throw new gutil.PluginError("webpack-dev-server", err);
         gutil.log("[webpack-dev-server]");
