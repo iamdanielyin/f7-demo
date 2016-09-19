@@ -66,7 +66,6 @@ module.exports = {
                 test: /\.less$/,
                 loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap!less-loader!postcss-loader')
             },
-            {test: /\.html$/, loader: 'html'},
             {test: /\.json$/, include: source_dir, exclude: /node_modules/, loader: 'json'},
             {test: /\.png$/, loader: 'url?limit=8192&mimetype=image/png'},
             {test: /\.jpe?g$/, loader: 'url?limit=8192&mimetype=image/jpg'},
