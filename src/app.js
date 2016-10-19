@@ -5,8 +5,6 @@ import 'framework7/dist/css/framework7.ios.min.css';
 import 'framework7/dist/css/framework7.ios.colors.css';
 import 'less/index.less';
 
-import 'page/about.html';
-
 // Initialize app and store it to myApp variable for futher access to its methods
 const myApp = new Framework7({
     pushState: true,
